@@ -14,8 +14,7 @@ const componentStatelessTemplate = require('../templates/componentStatelessTempl
 module.exports = function (name, stateless = false) {
     name = toCapitalize(name);
 
-    fs.writeFileSync(`${name}.jsx`, (stateless) ? componentStatelessTemplate(name) : componentTemplate(name), 'utf8');
-
+    fs.writeFileSync(`${name}.tsx`, (stateless) ? componentStatelessTemplate(name) : componentTemplate(name), 'utf8');
     // Success message
     logger('success', `Component <${name}> generated successfuly.`);
 }
