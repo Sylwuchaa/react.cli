@@ -3,35 +3,29 @@
 const fs = require('fs');
 const toCapitalize = require('../helper.js').toCapitalize;
 const logger = require('../helper.js').logger;
-const removeDirectory = require('../helper.js').removeDirectory;
-const moduleTemplate = require('../templates/moduleTemplate.js');
 const reducerTemplate = require('../templates/reducerTemplate.js');
-const modulesDir = './src/app/modules';
-
+const actionsTemplate = require('../templates/actionsTemplate.js');
+const actionsConstantsTemplate = require('../templates/actionsConstantsTemplate.js');
+const functionalTemplate = require('../templates/functionalTemplate');
+const componentTemplate = require('../templates/componentTemplate.js');
 /**
  * @param  {String} name
  */
-module.exports = function (name) {
-    name = name.toLowerCase();
-    // create modules directory if not exists
-    if (!fs.existsSync(modulesDir)) {
-        fs.mkdirSync(modulesDir);
+module.exports = function (name, options) {
+    const capitalizedName = toCapitalize(name);
+    const notCaptializedName = toNotCapitalize(name);
+
+    if (options.view) {
+        fs.writeFileSync(`${capitalizedName}.tsx`, componentTemplate(name), 'utf8');
     }
 
-    // remove old module before create
-    if (fs.existsSync(`${modulesDir}/${name}`)) {
-        removeDirectory(`${modulesDir}/${name}`)
+    if (options.functional) {
+        fs.writeFileSync(`${notCaptializedName}.ts`, functionalTemplate(), 'utf8');
     }
 
-    // create directory and files for module
-    fs.mkdirSync(`${modulesDir}/${name}`);
-    fs.mkdirSync(`${modulesDir}/${name}/scenes`);
-    fs.mkdirSync(`${modulesDir}/${name}/actions`);
-    fs.writeFileSync(`${modulesDir}/${name}/scenes/${toCapitalize(name)}.jsx`, moduleTemplate(name), 'utf8');
-    fs.writeFileSync(`${modulesDir}/${name}/${name}Reducer.js`, reducerTemplate(name), 'utf8');
-    fs.writeFileSync(`${modulesDir}/${name}/${name}Sagas.js`, '', 'utf8');
-    fs.writeFileSync(`${modulesDir}/${name}/actions/${name}Actions.js`, '', 'utf8');
-    fs.writeFileSync(`${modulesDir}/${name}/actions/${name}Types.js`, '', 'utf8');
+    fs.writeFileSync(`${notCaptializedName}Reducer.ts`, reducerTemplate(name), 'utf8');
+    fs.writeFileSync(`${notCaptializedName}Actions.ts`, actionsTemplate(name), 'utf8');
+    fs.writeFileSync(`${notCaptializedName}ActionsConstants.ts`, actionsConstantsTemplate(name), 'utf8');
 
     // Success message
     logger('success', `Module <${name}> generated successfuly.`);

@@ -22,6 +22,13 @@ module.exports.toCapitalize = function (str) {
 }
 
 /**
+ * @param  {} str
+ */
+module.exports.toNotCapitalize = function (str) {
+    return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
+/**
  * @param  {String} path
  */
 module.exports.removeDirectory = function (path) {

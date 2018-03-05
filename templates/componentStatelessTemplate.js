@@ -1,16 +1,19 @@
-// Generate Stateless Component Template
-
 /**
  * @param  {String} name
  */
 module.exports = function (name) {
-    return `import React, { PropTypes } from 'react'
+    const capitalizedName = toCapitalize(name);
+    return 
+    `
+    import React from 'react';
 
-const ${name} = props => (
-   <div>Component</div>
-);
-
-${name}.propTypes = {}
-
-export default ${name}`;
+    class ${capitalizedName} extends React.Component<s> {
+    
+      render() {
+        return (
+            <div />
+        );
+      }
+    }
+    `;
 }

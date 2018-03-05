@@ -1,11 +1,35 @@
-// Generate Component Template
-
 /**
  * @param  {String} name
  */
 module.exports = function (name) {
-    return `import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
+    const capitalizedName = toCapitalize(name);
+    const notCaptializedName = toNotCapitalize(name);
 
-${name}.propTypes = {}`;
+    return 
+    `
+    import React from 'react';
+    import { connect } from 'react-redux';
+    
+    type ${notCaptializedName}Props = {
+      dispatch: Function,
+    };
+    
+    class ${capitalizedName} extends React.Component<${notCaptializedName}Props> {
+    
+      render() {
+        return (
+            </div>
+        );
+      }
+    }
+    
+    function mapStateToProps(appState: appState) {
+      return {
+          smth: state,
+      };
+    }
+    
+    export default connect(mapStateToProps)(${capitalizedName});
+    
+    `;
 }

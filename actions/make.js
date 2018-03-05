@@ -7,7 +7,7 @@ const Generate = require('../generators/generator.js')
  */
 module.exports = function (args, callback) {
     if (args.type === 'module') {
-        Generate.module(args.name);
+        Generate.module(args.name, args.options);
     } else if (args.type === 'component') {
         if (args.options.stateless) {
             Generate.component(args.name, true)
