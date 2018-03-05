@@ -2,12 +2,14 @@
 
 const fs = require('fs');
 const toCapitalize = require('../helper.js').toCapitalize;
+const toNotCapitalize = require('../helper.js').toNotCapitalize;
 const logger = require('../helper.js').logger;
 const reducerTemplate = require('../templates/reducerTemplate.js');
 const actionsTemplate = require('../templates/actionsTemplate.js');
 const actionsConstantsTemplate = require('../templates/actionsConstantsTemplate.js');
 const functionalTemplate = require('../templates/functionalTemplate');
 const componentTemplate = require('../templates/componentTemplate.js');
+
 /**
  * @param  {String} name
  */

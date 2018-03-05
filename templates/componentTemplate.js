@@ -1,3 +1,6 @@
+const toCapitalize = require('../helper.js').toCapitalize;
+const toNotCapitalize = require('../helper.js').toNotCapitalize;
+
 /**
  * @param  {String} name
  */

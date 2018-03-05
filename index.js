@@ -5,13 +5,12 @@
 const vorpal = require('vorpal')();
 const make = require('./actions/make.js');
 const remove = require('./actions/remove.js');
-const init = require('./actions/init.js');
 
 vorpal
     .command('make <type> <name>')
     .option('-s, --stateless', 'Create Stateless component.')
     .option('-v, --view', 'Create view file')
-    .option('-f, --functional', 'Create functional view')
+    .option('-f, --functiognal', 'Create functional view')
     .description('Create project component.')
     .action(make);
 

@@ -8,18 +8,12 @@ const toNotCapitalize = require('../helper.js').toNotCapitalize;
    const capitalizedName = toCapitalize(name);
    const notCaptializedName = toNotCapitalize(name);
    return `
-import { createReducer } from '__common/utils/helpers';
 import { ${capitalizedName}ActionTypes } from 'actionsConstants';
 
-export const ${notCaptializedName}State = {
-};
-
-export default {
-  ${notCaptializedName}: createReducer(${notCaptializedName}State, {
-    [${capitalizedName}ActionTypes.NEW_ACTION]() {
-      // TODO
-    },
-  }),
-};
+export function NEW_ACTION() {
+    return {
+    type: ${capitalizedName}ActionTypes.NEW_ACTION,
+    };
+}
    `;
  }
